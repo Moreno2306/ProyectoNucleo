@@ -1,0 +1,40 @@
+digraph G {
+  graph [rankdir=TB, fontname="Helvetica", dpi=180, nodesep=0.45, ranksep=0.6, bgcolor="white", splines=spline];
+  node  [fontname="Helvetica", fontsize=10, shape=record, style="filled", fillcolor="#FFFFFF", color="#333333"];
+  edge  [fontname="Helvetica", fontsize=9, color="#333333"];
+
+  Motor [label="{Motor|- reglas : List\<Regla\>\l- p : Parametros\l- limiteNodos : long\l- dominioPrecalculado : boolean\l- nodos, retrocesos, evaluaciones : long\l|+ resolver(sesiones, aulas, docentes) : Resultado\l+ rechazo(c : Asignacion, parcial) : String\l+ rechazos(c : Asignacion, parcial) : List\<String\>\l+ expandir(cursos, p, aulas) : List\<Sesion\> \{static\}\l+ bloques(p) : List\<Bloque\> \{static\}\l- bt(pendientes, ..., parcial, causa) : boolean\l- penalizacionBlanda(c, parcial) : int\l}", fillcolor="#D9E5F2"];
+
+  Regla [label="{«interface»\nRegla|+ id() : String\l+ evaluar(c : Asignacion, parcial : List\<Asignacion\>, p : Parametros) : Optional\<String\>\l+ dependeDelParcial() : boolean \{default true\}\l}", fillcolor="#FFF4D6"];
+
+  R1 [label="{ChoqueDocente\n(RD-01)|+ evaluar(...)\l}"];
+  R2 [label="{ChoqueAula\n(RD-02)|+ evaluar(...)\l}"];
+  R6 [label="{CapacidadAula\n(RD-06)|+ evaluar(...)\l+ dependeDelParcial() : false\l}"];
+  R9 [label="{CargaDocente\n(RD-09)|+ evaluar(...)\l}"];
+  R13 [label="{CambioRegla\n(RD-13, prueba de cambio)|+ evaluar(...)\l}", style="filled,dashed"];
+  Rmas [label="{RD-03, RD-04, RD-05,\nRD-07, RD-08, RD-10|...}", style="filled,dashed", color="#888888"];
+
+  Resultado [label="{«record» Resultado|factible : boolean\lhorario : List\<Asignacion\>\lcausa : String\lnodos, retrocesos, evaluaciones, millis : long\l}"];
+  Parametros [label="{«record» Parametros|tope : int\ltolerancia : double\lminimoGrupo : int\lfraccionDocencia : double\lhoraInicioLV, horaFinLV, horaFinSab, almuerzoInicio : int\l|+ topeEfectivo() : int\l}", fillcolor="#E8F5E9"];
+  Asignacion [label="{«record» Asignacion|sesion : Sesion\lbloque : Bloque\laula : Aula\ldocente : Docente\l}"];
+  Sesion [label="{«record» Sesion|id : String\lgrupo : int\lindice : int\ltamano : int\l}"];
+  Curso [label="{«record» Curso|codigo : String\lsesionesSemana : int\laulaRequerida : Set\<String\>\ldemanda : int\l}"];
+  Bloque [label="{«record» Bloque|dia : int\linicio : int\l|+ fin() : int\l}"];
+  Aula [label="{«record» Aula|codigo : String\lcapacidad : int\lcaracteristicas : Set\<String\>\l}"];
+  Docente [label="{«record» Docente|codigo : String\ldedicacion : Dedicacion\lcursosHabilitados : Set\<String\>\ldisponible : Predicate\<Bloque\>\l}"];
+
+  Motor -> Regla [arrowhead=vee, label=" 1..*  usa (DIP)"];
+  Motor -> Parametros [arrowhead=vee, label=" 1"];
+  Motor -> Resultado [arrowhead=vee, style=dashed, label=" crea"];
+  R1 -> Regla [arrowhead=empty, style=dashed];
+  R2 -> Regla [arrowhead=empty, style=dashed];
+  R6 -> Regla [arrowhead=empty, style=dashed];
+  R9 -> Regla [arrowhead=empty, style=dashed];
+  R13 -> Regla [arrowhead=empty, style=dashed];
+  Rmas -> Regla [arrowhead=empty, style=dashed];
+  Resultado -> Asignacion [arrowhead=vee, label=" 0..*"];
+  Asignacion -> Sesion [arrowhead=vee]; Asignacion -> Bloque [arrowhead=vee]; Asignacion -> Aula [arrowhead=vee]; Asignacion -> Docente [arrowhead=vee];
+  Sesion -> Curso [arrowhead=vee, label=" 1"];
+  {rank=same; R1; R2; R6; R9; R13; Rmas;}
+  {rank=same; Sesion; Bloque; Aula; Docente;}
+}

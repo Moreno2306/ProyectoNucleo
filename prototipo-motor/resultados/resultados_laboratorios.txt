@@ -1,0 +1,29 @@
+factible=true nodos=51 retrocesos=0 ms=341
+--- L301 ---
+  Lun 07:00-09:00  C14-G1-S1  D10  (21 est.)
+  Lun 09:00-11:00  C14-G2-S1  D10  (21 est.)
+  Lun 13:00-15:00  C10-G1-S1  D02  (24 est.)
+  Lun 15:00-17:00  C10-G2-S1  D02  (24 est.)
+  Lun 17:00-19:00  C15-G1-S1  D02  (20 est.)
+  Lun 19:00-21:00  C18-G1-S1  D06  (22 est.)
+  Mar 17:00-19:00  C15-G2-S1  D09  (20 est.)
+  Mi? 07:00-09:00  C14-G1-S2  D10  (21 est.)
+  Mi? 09:00-11:00  C14-G2-S2  D10  (21 est.)
+  Mi? 13:00-15:00  C10-G1-S2  D02  (24 est.)
+  Mi? 15:00-17:00  C10-G2-S2  D02  (24 est.)
+  Mi? 17:00-19:00  C15-G1-S2  D02  (20 est.)
+  Mi? 19:00-21:00  C18-G1-S2  D06  (22 est.)
+  Jue 17:00-19:00  C15-G2-S2  D09  (20 est.)
+--- L302 ---
+  Lun 07:00-09:00  C04-G1-S1  D02  (30 est.)
+  Lun 09:00-11:00  C04-G2-S1  D02  (30 est.)
+  Lun 13:00-15:00  C01-G1-S1  D08  (35 est.)
+  Lun 17:00-19:00  C17-G1-S1  D05  (26 est.)
+  Lun 19:00-21:00  C16-G1-S1  D05  (24 est.)
+  Mi? 07:00-09:00  C04-G1-S2  D02  (30 est.)
+  Mi? 09:00-11:00  C04-G2-S2  D02  (30 est.)
+  Mi? 13:00-15:00  C01-G1-S2  D08  (35 est.)
+  Mi? 17:00-19:00  C17-G1-S2  D05  (26 est.)
+  Mi? 19:00-21:00  C16-G1-S2  D05  (24 est.)
+sesiones que requieren computadores: 22 de 51; capacidad de laboratorio: 2 aulas x 32 bloques = 64 franjas
+horas semanales asignadas por docente: {D01=14, D02=20, D03=12, D04=12, D05=8, D06=6, D07=6, D08=4, D09=4, D10=16}

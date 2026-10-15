@@ -1,0 +1,2 @@
+con RD-13: factible=true nodos=51 ms=726
+tope=35: sesiones=54 factible=true nodos=54 ms=464

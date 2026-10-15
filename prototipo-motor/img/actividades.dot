@@ -1,0 +1,45 @@
+digraph A {
+  graph [rankdir=TB, fontname="Helvetica", dpi=180, nodesep=0.35, ranksep=0.4, bgcolor="white"];
+  node  [fontname="Helvetica", fontsize=10, shape=box, style="rounded,filled", fillcolor="#F4F4F4", color="#333333"];
+  edge  [fontname="Helvetica", fontsize=9, color="#333333"];
+
+  ini [label="", shape=circle, style=filled, fillcolor="black", width=0.25];
+  fin_ok [label="", shape=doublecircle, style=filled, fillcolor="black", width=0.25];
+  fin_no [label="", shape=doublecircle, style=filled, fillcolor="black", width=0.25];
+
+  a1 [label="Expandir cursos en sesiones\n(RF-04: grupos por demanda, tope y\ncapacidad máxima de aulas compatibles)"];
+  a2 [label="Generar bloques válidos\n(RD-03, RD-04: franja y almuerzo)"];
+  a3 [label="Precalcular dominio de cada sesión\ncon reglas que no dependen del parcial\n(RD-03..RD-08)"];
+  d1 [label="¿Quedan sesiones\npendientes?", shape=diamond, fillcolor="#FFF4D6"];
+  a4 [label="Para cada sesión pendiente:\nfiltrar su dominio con las reglas\ndependientes del parcial\n(RD-01, RD-02, RD-09, RD-10)"];
+  d2 [label="¿Alguna sesión\nsin candidatas?", shape=diamond, fillcolor="#FFF4D6"];
+  a5 [label="Registrar causa: sesión bloqueada\ny última regla que rechazó (RF-08)"];
+  a6 [label="Elegir la sesión con menos candidatas\n(heurística variable más restringida)"];
+  a7 [label="Ordenar candidatas por penalización\nblanda (RB-01 días consecutivos,\nRB-05 misma franja)"];
+  d3 [label="¿Quedan candidatas\npor probar?", shape=diamond, fillcolor="#FFF4D6"];
+  a8 [label="Asignar candidata al horario parcial\n(nodos++)"];
+  a9 [label="Llamada recursiva sobre\nlas sesiones restantes"];
+  d4 [label="¿La recursión\ntuvo éxito?", shape=diamond, fillcolor="#FFF4D6"];
+  a10 [label="Deshacer asignación\n(retrocesos++)"];
+  d5 [label="¿Se superó el\nlímite de nodos?", shape=diamond, fillcolor="#FFF4D6"];
+  r_ok [label="Resultado: factible = true,\nhorario completo, métricas", fillcolor="#E8F5E9"];
+  r_no [label="Resultado: factible = false,\ncausa explicable, métricas", fillcolor="#FDE2E2"];
+
+  ini -> a1 -> a2 -> a3 -> d1;
+  d1 -> r_ok [label="no"];
+  d1 -> d5 [label="sí"];
+  d5 -> a5 [label="sí"];
+  d5 -> a4 [label="no"];
+  a4 -> d2;
+  d2 -> a5 [label="sí"];
+  d2 -> a6 [label="no"];
+  a6 -> a7 -> d3;
+  d3 -> a8 [label="sí"];
+  a8 -> a9 -> d4;
+  d4 -> r_ok [label="sí (propaga éxito)"];
+  d4 -> a10 [label="no"];
+  a10 -> d3;
+  d3 -> a5 [label="no (retroceder al nivel anterior)"];
+  a5 -> r_no;
+  r_ok -> fin_ok; r_no -> fin_no;
+}

@@ -1,0 +1,29 @@
+bloques disponibles con SUP-01 + P-03: 32 [D0@7h, D0@9h, D0@13h, D0@15h, D0@17h, D0@19h, D1@7h, D1@9h, D1@13h, D1@15h, D1@17h, D1@19h, D2@7h, D2@9h, D2@13h, D2@15h, D2@17h, D2@19h, D3@7h, D3@9h, D3@13h, D3@15h, D3@17h, D3@19h, D4@7h, D4@9h, D4@13h, D4@15h, D4@17h, D4@19h, D5@7h, D5@9h]
+
+=== Escenarios sobre Anexo D (x1) ===
+E0 RF-04 original, P-09=50%: sesiones=47 factible=false nodos=0 retrocesos=1 evaluaciones=363244 ms=118 causa=sin candidatas para C14-G1-S1; ?ltimo rechazo: C14-G1-S1 <- RD-06: aula L302 (35) < grupo de 41
+E1 RF-04 con capacidad de aula, P-09=50%: sesiones=51 factible=true nodos=51 retrocesos=0 evaluaciones=12429178 ms=889
+E2 RF-04 con capacidad de aula, P-09=75%: sesiones=51 factible=true nodos=51 retrocesos=0 evaluaciones=12441022 ms=428
+
+=== Escalabilidad (configuraci?n E2) ===
+escala;docentes;aulas;cursos;sesiones;bloques;factible;nodos;retrocesos;evaluaciones;ms;causa
+x1;10;5;20;51;32;true;51;0;12441022;587;
+--- horario x1 (primeras 12 asignaciones) ---
+C17-G1-S1 -> D0@17h L302 D05
+C17-G1-S2 -> D2@17h L302 D05
+C18-G1-S1 -> D0@19h L301 D06
+C18-G1-S2 -> D2@19h L301 D06
+C19-G1-S1 -> D1@19h A101 D06
+C05-G1-S1 -> D0@7h A101 D03
+C16-G1-S1 -> D0@19h L302 D05
+C16-G1-S2 -> D2@19h L302 D05
+C11-G1-S1 -> D0@9h A101 D03
+C11-G1-S2 -> D2@9h A101 D03
+C11-G1-S3 -> D4@9h A101 D03
+C12-G1-S1 -> D1@7h A101 D03
+pares de sesiones del mismo grupo en d?as consecutivos (RB-01): 0
+prueba de ruptura (forzar C17-G1-S2 al bloque/aula/docente de C17-G1-S1): [RD-01: docente D05 ya dicta C17-G1-S1 en D0@17h, RD-02: aula L302 ocupada por C17-G1-S1 en D0@17h]
+infactibilidad (1 aula): factible=false causa=sin candidatas para C05-G1-S1; ?ltimo rechazo: C05-G1-S1 <- RD-07: aula L301 sin [sillas] ms=2
+x2;20;10;40;102;32;true;102;0;194554243;8302;
+x3;30;15;60;153;32;true;153;0;977906525;46746;
+x4;40;20;80;204;32;true;204;0;3078549027;155283;
